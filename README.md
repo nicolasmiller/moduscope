@@ -33,125 +33,81 @@ Run them as follows:
 make test
 ```
 
-API Reference
+Functions
 -------------
-All public functions expect at least a buffer of samples and a length.
-Some expect a sample rate and voltage range when that makes sense.
+All public functions expect at least a buffer of samples and a buffer length.
+Some also expect a sample rate and/or voltage range when that makes sense.
 
 ```c++
+// Integer cycle count based on midpoint crossing count.
 int cycles(const double* samples, size_t count);
-```
-Integer cycle count based on midpoint crossing count.
 
-```c++
+// Frequency in hertz based on midpoint crossing count.
 double freq(const double* samples, size_t count);
-```
-Frequency in hertz based on midpoint crossing count.
 
-```c++
+// Period in seconds based on midpoint crossing count.
 double period(const double* samples, size_t count, double sample_rate_hz);
-```
-Period in seconds based on midpoint crossing count.
 
-```c++_
+// Average positive duty cycle in % 0-100.
 double avg_pos_duty(const double* samples, size_t count);
-```
-Average positive duty cycle in % 0-100.
 
-```c++_
+// Average negative duty cycle in % 0-100.
 double avg_neg_duty(const double* samples, size_t count);
-```
-Average negative duty cycle in % 0-100.
 
-```c++_
+// Average positive duty cycle width in seconds.
 double avg_pos_width(const double* samples, size_t count, double sample_rate_hz);
-```
-Average positive duty cycle width in seconds.
 
-```c++_
+// Average negative duty cycle width in seconds.
 double :avg_neg_duty(const double* samples, size_t count, double sample_rate_hz);
-```
-Average negative duty cycle width in seconds.
 
-```c++_
+// Average rise time in seconds from 10% above settled low to 10% below settled high.
 double avg_rise_time(const double* samples, size_t count, double voltage_range, double sample_rate_hz);
-```
-Average rise time in seconds from 10% above settled low to 10% below settled high.
 
-```c++_
+// Average fall time in seconds from 10% below settled high to 10% above settled low.
 double avg_fall_time(const double* samples, size_t count, double voltage_range, double sample_rate_hz);
-```
-Average fall time in seconds from 10% below settled high to 10% above settled low.
 
-```c++_
+// Absolute maximum value.
 double max(const double* samples, size_t count);
-```
-Absolute maximum value.
 
-```c++_
+// Absolute minimum value.
 double min(const double* samples, size_t count);
-```
-Absolute minimum value.
 
-```c++_
+// Midpoint between max and min.
 double midpoint(const double* samples, size_t count);
-```
-Midpoint between max and min.
 
-```c++_
+// Simple average.
 double average(const double* samples, size_t count);
-```
-Simple average.
 
-```c++_
+// Difference between max and min.
 double peak_to_peak(const double* samples, size_t count);
-```
-Difference between max and min.
 
-```c++_
+// Most common high value based on histogram assuming 14-bit vertical binning resolution.
 double settled_high(const double* samples, size_t count, double voltage_range);
-```
-Most common high value based on histogram assuming 14-bit vertical binning resolution.
 
-```c++_
+// Most common low value based on histogram assuming 14-bit vertical binning resolution.
 double settled_low(const double* samples, size_t count, double voltage_range);
-```
-Most common low value based on histogram assuming 14-bit vertical binning resolution.
 
-```c++_
+// Midpoint between settled high and settled low.
 double middle(const double* samples, size_t count, double voltage_range);
-```
-Midpoint between settled high and settled low.
 
-```c++_
+// Half the difference between settled high and settled low.
 double amplitude(const double* samples, size_t count, double voltage_range);
-```
-Half the difference between settled high and settled low.
 
-```c++_
+// AC root mean square.
 double ac_rms(const double* samples, size_t count);
-```
-AC root mean square.
 
-```c++_
+// DC root mean square.
 double dc_rms(const double* samples, size_t count);
-```
-DC root mean square.
 
-```c++_
+// Overshoot % 0-100 defined as `(peak_to_peak() / 2 - amplitude()) / amplitude()`.
 double overshoot(const double* samples, size_t count);
-```
-Overshoot % 0-100 defined as `(peak_to_peak() / 2 - amplitude()) / amplitude()`.
 
-```c++_
+// Rise overshoot % 0-100 defined as `(max() - settled_high()) / amplitude()`.
 double rise_overshoot(const double* samples, size_t count);
-```
-Rise overshoot % 0-100 defined as `(max() - settled_high()) / amplitude()`.
 
-```c++_
+// Fall overshoot % 0-100 defined as `(settled_low() - min()) / amplitude()`.
 double fall_overshoot(const double* samples, size_t count);
 ```
-Fall overshoot % 0-100 defined as `(settled_low() - min()) / amplitude()`.
 
 License
 -------
