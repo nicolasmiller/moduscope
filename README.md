@@ -58,7 +58,7 @@ double avg_neg_duty(const double* samples, size_t count);
 double avg_pos_width(const double* samples, size_t count, double sample_rate_hz);
 
 // Average negative duty cycle width in seconds.
-double :avg_neg_duty(const double* samples, size_t count, double sample_rate_hz);
+double avg_neg_duty(const double* samples, size_t count, double sample_rate_hz);
 
 // Average rise time in seconds from 10% above settled low to 10% below settled high.
 double avg_rise_time(const double* samples, size_t count, double voltage_range, double sample_rate_hz);
